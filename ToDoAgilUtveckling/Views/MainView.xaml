@@ -7,6 +7,37 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ListBox Name="TodoList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="8">
             
+        </ListBox>
+        <Label Content="Title" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2"/>
+        <TextBox Name="Title" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2"/>
+        <Label Content="Description" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2"/>
+        <TextBox Name="Description" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button Content="Add" Grid.Row="7" Grid.Column="5" Margin="5"/>
+        <Button Content="Cancel" Grid.Row="7" Grid.Column="6" Margin="5"/>
+        <Button Content="Done" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Margin="5"/>
     </Grid>
 </UserControl>
