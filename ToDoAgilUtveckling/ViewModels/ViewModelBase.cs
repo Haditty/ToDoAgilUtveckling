@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToDoAgilUtveckling.ViewModels
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

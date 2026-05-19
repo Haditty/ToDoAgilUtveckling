@@ -37,7 +37,7 @@
         <Button Content="+" Grid.Row="2" Grid.Column="2" Margin="5"/>
         <Button Content="-" Grid.Row="2" Grid.Column="3" Margin="5"/>
 
-        <ListBox Name="TodoList" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="8">
+        <ListBox ItemsSource="{Binding ToDoItems.Title}" Name="TodoList" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="8">
             
         </ListBox>
         <Label Content="Title" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2"/>
