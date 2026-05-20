@@ -35,8 +35,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Content="+" Grid.Row="2" Grid.Column="2" Margin="5"/>
-        <Button Content="-" Grid.Row="2" Grid.Column="3" Margin="5"/>
+        <Button Content="+" Grid.Row="2" Grid.Column="2" Margin="5" Command="{Binding AddItemCommand}"/>
+        <Button Content="-" Grid.Row="2" Grid.Column="3" Margin="5" Command="{Binding DeleteItemCommand}"/>
 
         <ListBox ItemsSource="{Binding ToDoItems}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" 
                  Name="TodoList" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="8">
@@ -50,11 +50,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Title" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2"/>
-        <TextBox Name="Title" Text="{Binding SelectedItem.Title}" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2"/>
+        <TextBox Name="Title" Text="{Binding SelectedItem.Title, Mode=TwoWay}" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2"/>
         <Label Content="Description"  Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2"/>
-        <TextBox Name="Description" Text="{Binding SelectedItem.Description}" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox Name="Description" Text="{Binding SelectedItem.Description, Mode=TwoWay}" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <CheckBox Content="Done" IsChecked="{Binding SelectedItem.IsDone, Mode=TwoWay}"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  Grid.Row="8" Grid.Column="5" />
-        <Button Content="OK" Grid.Row="10" Grid.Column="5" Margin="5"/>
+        <Button Content="OK" Grid.Row="10" Grid.Column="5" Margin="5" />
         <Button Content="Cancel" Grid.Row="10" Grid.Column="6" Margin="5"/>
     </Grid>
 </UserControl>
