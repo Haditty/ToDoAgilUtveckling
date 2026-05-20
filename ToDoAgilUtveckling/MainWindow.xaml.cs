@@ -22,7 +22,6 @@ namespace ToDoAgilUtveckling
             InitializeComponent();
 
             MainViewModel mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
 
 
         }

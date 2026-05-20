@@ -33,9 +33,9 @@ namespace ToDoAgilUtveckling.ViewModels
 
             using (var db = new AppDbContext())
             {
+                _db = new AppDbContext();           // saves connection to _db field
                 _toDoItems = new ObservableCollection<ToDoItem>(
-
-                db.ToDoItems.ToList()
+                    _db.ToDoItems.ToList()          // reads all rows from ToDoItems table
                 );
             }
 
