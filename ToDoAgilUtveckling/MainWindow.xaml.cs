@@ -18,10 +18,8 @@ namespace ToDoAgilUtveckling
         public MainWindow()
         {
             InitializeComponent();
-
             MainViewModel mainViewModel = new MainViewModel();
-
-
+            DataContext = mainViewModel;
         }
     }
 }

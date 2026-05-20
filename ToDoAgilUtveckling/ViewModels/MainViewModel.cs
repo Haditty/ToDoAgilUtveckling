@@ -11,26 +11,20 @@ namespace ToDoAgilUtveckling.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly AppDbContext _db;
-
         private ObservableCollection<ToDoItem> _toDoItems;
 
         public ObservableCollection<ToDoItem> ToDoItems {
             get => _toDoItems;
             set
             {
-
                 _toDoItems = value;
-
                 RaisePropertyChanged();
-
             }
         }
 
 
         public MainViewModel()
         {
-
             using (var db = new AppDbContext())
             {
                 _db = new AppDbContext();       
@@ -38,10 +32,6 @@ namespace ToDoAgilUtveckling.ViewModels
                     _db.ToDoItems.ToList()        
                 );
             }
-
-
         }
-
     }
-
 }
