@@ -11,6 +11,35 @@ namespace ToDoAgilUtveckling.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private ToDoItem _selectedItem;
+
+        public ToDoItem SelectedItem
+        {
+            get => _selectedItem;
+
+            set
+            {
+                _selectedItem = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+
+            set
+            {
+                _selectedIndex = value;
+                RaisePropertyChanged();
+                if (_selectedIndex >= 0 && _selectedIndex < ToDoItems.Count) { SelectedItem = ToDoItems[_selectedIndex]; }
+                SelectedItem = ToDoItems[SelectedIndex];
+            }
+        }
+        
+
         private ObservableCollection<ToDoItem> _toDoItems;
 
         public ObservableCollection<ToDoItem> ToDoItems {
@@ -19,6 +48,7 @@ namespace ToDoAgilUtveckling.ViewModels
             {
                 _toDoItems = value;
                 RaisePropertyChanged();
+           
             }
         }
 
@@ -27,11 +57,12 @@ namespace ToDoAgilUtveckling.ViewModels
         {
             using (var db = new AppDbContext())
             {
-                _db = new AppDbContext();       
+                     
                 _toDoItems = new ObservableCollection<ToDoItem>(
-                    _db.ToDoItems.ToList()        
+                    db.ToDoItems.ToList()        
                 );
             }
+          
         }
     }
 }
