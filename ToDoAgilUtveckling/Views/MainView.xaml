@@ -58,5 +58,10 @@
         <Button Content="Cancel" Grid.Row="10" Grid.Column="6" Margin="5"/>
         <Button Content="OK" Grid.Row="10" Grid.Column="5" Margin="5" Command="{Binding UpdateCommand}" />
         <Button Content="Cancel" Command="{Binding CancelCommand}" Grid.Row="10" Grid.Column="6" Margin="5"/>
+
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+          ItemsSource="{Binding FilterOptions}"
+          SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
+          Margin="5"/>
     </Grid>
 </UserControl>

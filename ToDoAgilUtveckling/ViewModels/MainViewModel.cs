@@ -43,6 +43,29 @@ namespace ToDoAgilUtveckling.ViewModels
             }
         }
 
+        private ObservableCollection<ToDoItem> _allItems;
+
+        public ObservableCollection<string> FilterOptions { get; } = new ObservableCollection<string> { "All", "Done", "Not Done" };
+
+        private string _selectedFilter = "All";
+        public string SelectedFilter
+        {
+            get => _selectedFilter;
+            set
+            {
+                _selectedFilter = value;
+                RaisePropertyChanged();
+                ApplyFilter();
+            }
+        }
+
+        private void ApplyFilter()
+        {
+            if (_selectedFilter == "All") { ToDoItems = new ObservableCollection<ToDoItem>(_allItems); }
+            else if (_selectedFilter == "Done") { ToDoItems = new ObservableCollection<ToDoItem>(_allItems.Where(t => t.IsDone == true)); }
+            else if (_selectedFilter == "Not Done") { ToDoItems = new ObservableCollection<ToDoItem>(_allItems.Where(t => t.IsDone == false)); }
+        }
+
         private ObservableCollection<ToDoItem> _toDoItems;
         public ObservableCollection<ToDoItem> ToDoItems {
             get => _toDoItems;
@@ -62,10 +85,14 @@ namespace ToDoAgilUtveckling.ViewModels
             using (var db = new AppDbContext())
             {
                      
-                ToDoItems = new ObservableCollection<ToDoItem>(
-                    db.ToDoItems.ToList()        
-                );
+                _allItems = new ObservableCollection<ToDoItem>(db.ToDoItems.ToList());
+
+
+
             }
+                ToDoItems = new ObservableCollection<ToDoItem>(_allItems);
+
+
             SelectedIndex = 0;
         }
 
@@ -97,14 +124,13 @@ namespace ToDoAgilUtveckling.ViewModels
             };
 
             ToDoItems.Add(item);
-       
 
             using (var db = new AppDbContext())
             {
                 db.ToDoItems.Add(item);
                 db.SaveChanges();
             }
-            
+            _allItems.Add(item);
         }
 
         private void CancelTask (object? obj)
@@ -114,7 +140,12 @@ namespace ToDoAgilUtveckling.ViewModels
                 ToDoItems = new ObservableCollection<ToDoItem>(
                     db.ToDoItems.ToList()
                 );
+
+                _allItems = new ObservableCollection<ToDoItem>(db.ToDoItems.ToList());
+
             }
+            ApplyFilter();
+
             var temp = SelectedIndex;
         }
 
@@ -135,7 +166,11 @@ namespace ToDoAgilUtveckling.ViewModels
                 db.SaveChanges();
             }
             ToDoItems.Remove(SelectedItem);
+            _allItems.Remove(SelectedItem);
+
             SelectedItem = null;
+
+
         }
         private bool CanAddTask (object? obj)
         {
