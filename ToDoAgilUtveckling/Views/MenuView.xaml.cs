@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,18 +10,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ToDoAgilUtveckling.ViewModels;
 
-namespace ToDoAgilUtveckling
+namespace ToDoAgilUtveckling.Views
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MenuView.xaml
+    /// </summary>
+    public partial class MenuView : UserControl
     {
-        public MainWindow()
+        public MenuView()
         {
             InitializeComponent();
-            MainViewModel mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
         }
     }
 }
