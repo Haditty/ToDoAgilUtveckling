@@ -56,7 +56,7 @@
         <CheckBox Content="Done" IsChecked="{Binding SelectedItem.IsDone, Mode=TwoWay}"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  Grid.Row="8" Grid.Column="5" />
         <Button Content="OK" Command="{Binding UpdateCommand}" Grid.Row="10" Grid.Column="5" Margin="5" />
         <Button Content="Cancel" Grid.Row="10" Grid.Column="6" Margin="5"/>
-        <Button Content="OK" Grid.Row="10" Grid.Column="5" Margin="5" />
+        <Button Content="OK" Grid.Row="10" Grid.Column="5" Margin="5" Command="{Binding UpdateCommand}" />
         <Button Content="Cancel" Command="{Binding CancelCommand}" Grid.Row="10" Grid.Column="6" Margin="5"/>
     </Grid>
 </UserControl>

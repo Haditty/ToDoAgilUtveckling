@@ -125,7 +125,12 @@ namespace ToDoAgilUtveckling.ViewModels
 
         private void RemoveTask(object? obj)
         {
-            ToDoItems.Remove(ToDoItems[SelectedIndex]);
+            using (var db = new AppDbContext())
+            {
+                db.ToDoItems.Remove(SelectedItem);
+                db.SaveChanges();
+            }
+            ToDoItems.Remove(SelectedItem);
         }
         private bool CanAddTask (object? obj)
         {
