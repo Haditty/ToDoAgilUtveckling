@@ -12,6 +12,7 @@ namespace ToDoAgilUtveckling.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public DelegateCommand CancelCommand { get; }
         public DelegateCommand AddItemCommand { get; }
         public DelegateCommand DeleteItemCommand { get; }
 
@@ -55,6 +56,7 @@ namespace ToDoAgilUtveckling.ViewModels
         {
             AddItemCommand = new DelegateCommand(AddTask, CanAddTask);
             DeleteItemCommand = new DelegateCommand(RemoveTask, CanRemoveTask);
+            CancelCommand = new DelegateCommand (CancelTask, CanCancelTask);
             using (var db = new AppDbContext())
             {
                      
@@ -75,6 +77,22 @@ namespace ToDoAgilUtveckling.ViewModels
                 CategoryId = 1,
                 IsDone = false
             });
+        }
+
+        private void CancelTask (object? obj)
+        {
+            using (var db = new AppDbContext())
+            {
+                ToDoItems = new ObservableCollection<ToDoItem>(
+                    db.ToDoItems.ToList()
+                );
+            }
+            var temp = SelectedIndex;
+        }
+
+        private bool CanCancelTask (object? obj)
+        {
+            return true;
         }
 
         private void RemoveTask(object? obj)
