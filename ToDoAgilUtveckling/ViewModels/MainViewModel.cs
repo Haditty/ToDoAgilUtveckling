@@ -71,11 +71,12 @@ namespace ToDoAgilUtveckling.ViewModels
 
         private void UpdateItem(object? obj)
         {
+            if (SelectedItem == null)
+                return;
             using (var db = new AppDbContext())
             {
                 db.ToDoItems.Update(SelectedItem);
                 db.SaveChanges();
-                
             }
 
         }
@@ -89,7 +90,6 @@ namespace ToDoAgilUtveckling.ViewModels
         {
             var item = new ToDoItem()
             {
-                Id = ToDoItems.Count + 1,
                 Title = "",
                 Description = "",
                 CategoryId = 1,
@@ -125,12 +125,17 @@ namespace ToDoAgilUtveckling.ViewModels
 
         private void RemoveTask(object? obj)
         {
+            if (SelectedItem == null)
+                return;
+
             using (var db = new AppDbContext())
             {
+
                 db.ToDoItems.Remove(SelectedItem);
                 db.SaveChanges();
             }
             ToDoItems.Remove(SelectedItem);
+            SelectedItem = null;
         }
         private bool CanAddTask (object? obj)
         {

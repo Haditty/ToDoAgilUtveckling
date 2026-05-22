@@ -30,7 +30,6 @@ public partial class AppDbContext : DbContext
         {
             entity.ToTable("Category");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Category1)
                 .HasMaxLength(10)
                 .IsFixedLength()
@@ -39,7 +38,6 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<ToDoItem>(entity =>
         {
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Title).HasMaxLength(255);
 
             entity.HasOne(d => d.Category).WithMany(p => p.ToDoItems)
