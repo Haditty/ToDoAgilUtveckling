@@ -15,6 +15,7 @@ namespace ToDoAgilUtveckling.ViewModels
         public DelegateCommand CancelCommand { get; }
         public DelegateCommand AddItemCommand { get; }
         public DelegateCommand DeleteItemCommand { get; }
+        public DelegateCommand UpdateCommand { get; }
 
         private ToDoItem _selectedItem;
         public ToDoItem SelectedItem
@@ -56,27 +57,54 @@ namespace ToDoAgilUtveckling.ViewModels
         {
             AddItemCommand = new DelegateCommand(AddTask, CanAddTask);
             DeleteItemCommand = new DelegateCommand(RemoveTask, CanRemoveTask);
+            UpdateCommand = new DelegateCommand(UpdateItem, CanUpdateItem);
             CancelCommand = new DelegateCommand (CancelTask, CanCancelTask);
             using (var db = new AppDbContext())
             {
                      
-                _toDoItems = new ObservableCollection<ToDoItem>(
+                ToDoItems = new ObservableCollection<ToDoItem>(
                     db.ToDoItems.ToList()        
                 );
             }
             SelectedIndex = 0;
         }
 
+        private void UpdateItem(object? obj)
+        {
+            using (var db = new AppDbContext())
+            {
+                db.ToDoItems.Update(SelectedItem);
+                db.SaveChanges();
+                
+            }
+
+        }
+
+        private bool CanUpdateItem(object? obj)
+        {
+            return true;
+        }
+
         private void AddTask(object? obj)
         {
-            ToDoItems.Add(new ToDoItem()
+            var item = new ToDoItem()
             {
-                Id = ToDoItems.Count +1,
+                Id = ToDoItems.Count + 1,
                 Title = "",
                 Description = "",
                 CategoryId = 1,
                 IsDone = false
-            });
+            };
+
+            ToDoItems.Add(item);
+       
+
+            using (var db = new AppDbContext())
+            {
+                db.ToDoItems.Add(item);
+                db.SaveChanges();
+            }
+            
         }
 
         private void CancelTask (object? obj)
