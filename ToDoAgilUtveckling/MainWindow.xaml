@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoAgilUtveckling"
+        xmlns:viewModels="clr-namespace:ToDoAgilUtveckling.ViewModels"
         mc:Ignorable="d"
+        xmlns:views="clr-namespace:ToDoAgilUtveckling.Views"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <views:MenuView Grid.Row="0" />
+        <views:MainView Grid.Row="1" />
     </Grid>
 </Window>
